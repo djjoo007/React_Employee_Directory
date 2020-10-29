@@ -23,58 +23,46 @@ class Container extends Component {
 
   searchEmployee = () => {
     API.getUsers()
-      .then(res => this.setState({ result: res.data }))
+      .then(res => this.setState({
+        employees: res.data.results,
+        filteredEmployee: res.data.results
+       }))
       .catch(err => console.log(err));
   };
 
   handleInputChange = event => {
-    const value = event.target.value;
-    const name = event.target.name;
+    const employees = this.state.employees;
+    const UserInput = event.target.value;
+    const filteredEmployee = employees.filter(employee => employee.name.first.toLowercase().indexOf(UserInput.toLowerCase()) > -1)
     this.setState({
-      [name]: value
+      filteredEmployee
     });
   };
 
-  // When the form is submitted, search the OMDB API for the value of `this.state.search`
-  handleFormSubmit = event => {
+  // When the form is submitted, search the Random API for the value of `this.state.search`
+  handleSearch = event => {
     event.preventDefault();
     this.searchMovies(this.state.search);
   };
 
+
   render() {
     return (
-      <Container>
-        <Row>
-          <Col size="md-8">
-            <Card
-              heading={this.state.result.Title || "Search for a Movie to Begin"}
-            >
-              {this.state.result.Title ? (
-                <MovieDetail
-                  title={this.state.result.Title}
-                  src={this.state.result.Poster}
-                  director={this.state.result.Director}
-                  genre={this.state.result.Genre}
-                  released={this.state.result.Released}
-                />
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-            </Card>
-          </Col>
-          <Col size="md-4">
-            <Card heading="Search">
+      <Div>
               <SearchForm
-                value={this.state.search}
+                employee={this.state.search}
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
+                handleSearch={this.handleSearch}
               />
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+
+              <TableData
+                results={this.state.filteredEmployee}
+                sortbyName={this.sortbyName}
+              />
+      </Div>
+
     );
   }
 }
 
-export default OmdbContainer;
+export default Container;
