@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SearchForm from './SearchForm';
-import MovieDetail from './TableData';
+import EmployeeTable from './EmployeeTable';
 import API from '../utils/API';
 import './style.css';
 
@@ -55,7 +55,7 @@ class Container extends Component {
                 handleSearch={this.handleSearch}
               />
 
-              <TableData
+              <EmployeeTable
                 results={this.state.filteredEmployee}
                 sortbyName={this.sortbyName}
               />
