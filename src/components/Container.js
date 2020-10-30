@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchForm from './SearchForm';
 import EmployeeTable from './EmployeeTable';
+import Header from './Header';
 import API from '../utils/API';
 import './style.css';
 
@@ -24,7 +25,7 @@ class Container extends Component {
     API.getUsers()
       .then(res => this.setState({
         employees: res.data.results,
-        filteredEmployee: res.data.results
+        filteredEmployee: res.data.results,
        }))
       .catch(err => console.log(err));
   };
@@ -41,7 +42,6 @@ class Container extends Component {
   // When the form is submitted, search the Random API for the value of `this.state.search`
   handleSearch = event => {
     event.preventDefault();
-    if(!this.state.search) 
     this.filteredEmployee(this.state.search);
   };
 
@@ -54,6 +54,10 @@ class Container extends Component {
   render() {
     return (
       <div>
+            <Header
+              heading={this.state.result.Title || "Search for a Movie to Begin"}
+            ></Header>
+
             <SearchForm
               employee={this.state.search}
               handleInputChange={this.handleInputChange}
