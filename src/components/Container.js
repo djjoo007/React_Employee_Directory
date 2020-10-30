@@ -13,9 +13,8 @@ class Container extends Component {
     order: ''
   };
 
-  // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
-    this.getUsers().then(res => this.setState ({
+    API.getUsers().then(res => this.setState ({
       employees: res.data.results,
       filteredEmployee: res.data.results
     })).catch(err => console.log(err))
@@ -54,7 +53,7 @@ class Container extends Component {
 
   render() {
     return (
-      <Div>
+      <div>
             <SearchForm
               employee={this.state.search}
               handleInputChange={this.handleInputChange}
@@ -65,7 +64,7 @@ class Container extends Component {
               results={this.state.filteredEmployee}
               sortName={this.sortName}
               />
-      </Div>
+      </div>
 
     );
   }
