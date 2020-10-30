@@ -42,22 +42,28 @@ class Container extends Component {
   // When the form is submitted, search the Random API for the value of `this.state.search`
   handleSearch = event => {
     event.preventDefault();
-    this.searchMovies(this.state.search);
+    if(!this.state.search) 
+    this.filteredEmployee(this.state.search);
   };
+
+  sortName = () => {
+    const filtered = this.state.filteredEmployee;
+ 
+  }
 
 
   render() {
     return (
       <Div>
-              <SearchForm
-                employee={this.state.search}
-                handleInputChange={this.handleInputChange}
-                handleSearch={this.handleSearch}
-              />
+            <SearchForm
+              employee={this.state.search}
+              handleInputChange={this.handleInputChange}
+              handleSearch={this.handleSearch}
+            />
 
-              <EmployeeTable
-                results={this.state.filteredEmployee}
-                sortbyName={this.sortbyName}
+            <EmployeeTable
+              results={this.state.filteredEmployee}
+              sortName={this.sortName}
               />
       </Div>
 
