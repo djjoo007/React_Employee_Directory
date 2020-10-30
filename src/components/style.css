@@ -10,3 +10,23 @@ code {
       monospace;
   }
   
+  .header {
+    padding: 50px;
+    text-align: center;
+    background: #3AA7A0;
+    color: white;
+  }
+
+  h1 {
+      font-size: 30px;
+  }
+
+  p1 {
+      font-size: 10px;
+  }
+
+  .tableEmployee {
+      background: #f7c9c0;
+      padding: 50px;
+
+  }
