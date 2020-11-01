@@ -50,10 +50,9 @@ class Container extends Component {
     const filteredEmployee = employees.filter(employees => employees.name.first.toLowerCase().includes(search.toLowerCase()));
 
     this.setState({
-        filteredEmployee
+        filteredEmployee,
     });
 }
-
 
   sortName = () => {
     const filtered = this.state.filteredEmployee;
@@ -66,7 +65,6 @@ class Container extends Component {
     }
   }
 
-
   render() {
     return (
       <div>
@@ -75,7 +73,7 @@ class Container extends Component {
             ></Header>
 
             <SearchForm
-              employee={this.state.search}
+              employee={this.state.employees}
               handleInputChange={this.handleInputChange}
               handleSearch={this.handleSearch}
             />

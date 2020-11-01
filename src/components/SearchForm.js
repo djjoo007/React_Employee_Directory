@@ -1,5 +1,4 @@
 import React from "react";
-import './style.css';
 
 function SearchForm(props) {
   return (
@@ -12,7 +11,7 @@ function SearchForm(props) {
           name="search"
           type="text"
           className="inputBox"
-          placeholder='Search by Name'
+          placeholder='Search by First Name'
           id='employee'
           list='employee'
         />
