@@ -33,21 +33,37 @@ class Container extends Component {
   handleInputChange = event => {
     const employees = this.state.employees;
     const UserInput = event.target.value;
-    const filteredEmployee = employees.filter(employee => employee.name.first.toLowercase().indexOf(UserInput.toLowerCase()) > -1)
+    const filteredEmployee = employees.filter(employees => employees.name.first.toLowercase().indexOf(UserInput.toLowerCase()) > -1)
     this.setState({
-      filteredEmployee
+      filteredEmployee,
     });
   };
 
   // When the form is submitted, search the Random API for the value of `this.state.search`
   handleSearch = event => {
     event.preventDefault();
-    this.filteredEmployee(this.state.search);
-  };
+    if (!this.state.search) {
+        alert("Enter a name")
+    }
+    const { employees, search } = this.state;
+
+    const filteredEmployee = employees.filter(employees => employees.name.first.toLowerCase().includes(search.toLowerCase()));
+
+    this.setState({
+        filteredEmployee
+    });
+}
+
 
   sortName = () => {
     const filtered = this.state.filteredEmployee;
- 
+    if (this.state.order === 'asc') {
+      const sorted = filtered.sort((a,b) => (a.name.first > b.name.first) ? 1: -1)
+      this.setState({
+        filteredEmployee: sorted,
+        order: 'asc'
+      });
+    }
   }
 
 
@@ -55,7 +71,7 @@ class Container extends Component {
     return (
       <div>
             <Header
-              heading={this.state.result.Title || "Search for a Movie to Begin"}
+              heading={ this.state.result.Title }
             ></Header>
 
             <SearchForm
