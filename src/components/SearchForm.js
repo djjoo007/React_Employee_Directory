@@ -8,15 +8,17 @@ function SearchForm(props) {
         <input
           onChange={props.handleInputChange}
           value={props.value}
-          name="search"
-          type="text"
-          className="inputBox"
+          name='search'
+          type='text'
+          className='inputBox'
           placeholder='Search by First Name'
           id='employee'
           list='employee'
         />
         <br />
         <button 
+          type='submit'
+          value=''
           onClick={props.handleSearch} 
           className="btn btn-primary">
           Search

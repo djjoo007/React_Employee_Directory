@@ -8,12 +8,12 @@ function EmployeeTable(props) {
             <tr>
                 <th></th>
                 <th onClick={props.sortName}>Name</th>
-                <th>Phone</th>
+                <th>Phone Number</th>
                 <th>E-mail</th>
                 <th>DOB</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody className=''>
             {props.results.map(result => (
                 <tr className='table' key={result.login.uuid}>
                     <td> <img className="
